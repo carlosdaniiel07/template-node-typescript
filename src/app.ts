@@ -1,14 +1,15 @@
 import express from 'express'
 
-const app = express()
+import routes from './routes'
+import errorHandler from './middlewares/errorHandler'
 
-app.get('/', (req, res, next) => {
-  return res.json({
-    status: 200,
-    success: true,
-    message: 'Hello TypeScript',
-    timestamp: new Date().getTime()
-  })
-})
+const app = express()
+const router = express.Router()
+
+routes.forEach(route => route(router))
+
+app.use(express.json())
+app.use(router)
+app.use(errorHandler())
 
 export default app
