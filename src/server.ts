@@ -1,11 +1,18 @@
+import dotenv from 'dotenv'
+
 import app from './app'
 import database from './database'
+import jobs from './jobs'
+
+dotenv.config()
 
 database()
   .then(_ => {
     console.log('[!] Database conected')
 
     app.listen(process.env.PORT || 3000, () => {
+      jobs()
+
       console.log('[!] Server is running')
     })
   })
