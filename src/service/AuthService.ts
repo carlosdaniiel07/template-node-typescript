@@ -7,7 +7,12 @@ import JWT_CONFIG from './../config/jwt'
 
 const generateToken = (auth: Auth): string => {
   const { id, email, role } = auth
-  return jwt.sign({ id, email, role }, JWT_CONFIG.secret, { expiresIn: JWT_CONFIG.duration })
+  return jwt.sign({ id, email, role }, JWT_CONFIG.secret, {
+    algorithm: 'HS256',
+    issuer: 'Who generated the token',
+    audience: 'Who can use the token',
+    expiresIn: JWT_CONFIG.duration
+  })
 }
 
 const decodeToken = (authorizationToken: string): any => {
