@@ -29,8 +29,8 @@ export class Auth {
   password?: string
 
   @Column({
-    type: 'enum',
-    enum: Role
+    type: 'varchar',
+    default: Role.DEFAULT
   })
   role?: Role
 

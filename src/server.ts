@@ -6,7 +6,7 @@ import jobs from './jobs'
 
 dotenv.config()
 
-database()
+database(process.env.NODE_ENV!)
   .then(_ => {
     console.log('[!] Database conected')
 
